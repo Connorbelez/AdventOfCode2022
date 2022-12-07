@@ -3,14 +3,9 @@ def sol1(file):
     index = 0
     while index != len(string)-15:
         window = list(string[index:index+14])
-        print(window)
-        
         if len(window) == len(set(window)):
             break
         index += 1
-        
-        
-        
     return index + 14
         
         
