@@ -6,16 +6,10 @@ f = open("data4.txt", "r")
 def parse(input_data):
     total = 0
     lines = []
-    for line in input_data:
-        l = line.strip().split(",")
-        rp = l[0].split("-") + l[1].split("-")
-        rp = [int(x) for x in rp]
 
-        lines.append(rp)
+    lines = [ [ int(x) for x in (line.strip().split(",")[0].split("-") + line.strip().split(",")[1].split("-")) ] for line in input_data ]
     
-    
-    for i,line in enumerate(lines):
-        print(line)
+    for line in lines:
         if line[0] >= line[2] and line[1] <= line[3]:
             total +=1
         elif line[0] <= line[2] and line[1] >= line[3]:

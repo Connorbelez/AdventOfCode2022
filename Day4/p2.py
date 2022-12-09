@@ -1,31 +1,16 @@
 # Parse the input data into a list of tuples, each containing the start and end of the range
 # e.g. [(2, 4), (6, 8), ...]
-
+import re
 f = open("data4.txt", "r")
 
 def parse(input_data):
     total = 0
-    lines = []
-    for line in input_data:
-        l = line.strip().split(",")
-        rp = l[0].split("-") + l[1].split("-")
-        rp = [int(x) for x in rp]
+    lines2 = [[int(x) for x in (re.findall("\d+", line))] for line in input_data]
+    print(lines2)
 
-        lines.append(rp)
-    
-    
-    for i,line in enumerate(lines):
-        print(line)
-        if line[0] >= line[2] and line[0] <= line[3]:
+    for a1,a2,b1,b2 in lines2:
+        if a1 >= b1 and a2 <= b2:
             total +=1
-        elif line[1] >= line[2] and line[1] <= line[3]:
-            total +=1
-        elif line[2] >= line[0] and line[2] <= line[1]:
-            total +=1
-        elif line[3] >= line[0] and line[3] <= line[1]:
-            total +=1
-        
-    return total
 
     
         
