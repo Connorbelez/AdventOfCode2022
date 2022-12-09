@@ -6,35 +6,24 @@ class Directory:
         self.children = {}
         self.parent = parent
         self.size = size
-    
     def update_size(self, size):
         self.size += size
         if self.parent:
             self.parent.update_size(size)
-            
     def add_child(self, child):
         self.children[child.name] = child
-    
     def change_dir(self, dir):
         return self.children[dir]
-    
     def __str__(self):
         return "Name: " + self.name + " Size: " + str(self.size)
-        
-
+    
 def sol1(file):
     with open(file, "r") as f:
-        
-        # lines = f.readlines()
         fline = f.readline()
         Dir = Directory("/","dir")
-        
         root = Dir
         lsFlag = False
         for line in f:
-            l = line.strip().split(" ")
-
-            print(l)
             if l[0] == '$':
                 #new command
                 lsFlag = False
@@ -57,12 +46,10 @@ def sol1(file):
                         Dir.add_child(newDir)
                     else:
                         Dir.update_size(int(l[0]))
-    
     sizeReq = 30000000
     DiscAvail = 70000000 - root.size
     val = sizeReq - DiscAvail
     return bfs(root), bfs2(root,val)
-        
         
 def bfs(root):
     q = [root]
@@ -75,7 +62,6 @@ def bfs(root):
             q.append(child)
     return counter
 
-#create a bfs function that returns the number of directories with size less than 100000
 def bfs2(root,sizeReq):
     q = [root]
     counter = 0
@@ -91,8 +77,6 @@ def bfs2(root,sizeReq):
     for i in canidate:
         print(i)
     return min1
-
-            
 
 def main():
     file = "/Users/connorbeleznay/Projects/Personal/AdventOfCode/2022/Day7/data.txt"
